@@ -276,8 +276,10 @@ async function cloudLoadRoster(){
   if(!cloudClient)return;
   const {data:roster,error}=await cloudClient.rpc('orbit_team_roster');
   if(error)throw new Error('Could not load team membership: '+error.message);
-  cloudRoster=Array.isArray(roster)?roster:[];
-  if(cloudReady)render();
+  const next=Array.isArray(roster)?roster:[];
+  const changed=!sameJson(next,cloudRoster);
+  cloudRoster=next;
+  if(cloudReady&&changed)render();
 }
 async function cloudOpen(){
   if(cloudOpening||cloudReady)return;
