@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#1f243b"><title>Orbit | Mobile Command Centre</title>
+<style>
+:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#252941;background:#f5f6fb;--purple:#6955d9;--ink:#252941;--muted:#747b8f;--line:#e5e7f0;--ok:#167657;--warn:#a86100;--bad:#c44656}*{box-sizing:border-box}body{margin:0}button,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.shell{max-width:1160px;margin:0 auto;padding:18px 18px 90px}.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}.brand{font-size:22px;font-weight:850;letter-spacing:-.7px}.mark{display:inline-grid;place-items:center;background:var(--purple);color:white;width:32px;height:32px;border-radius:10px;margin-right:8px}.top-right{display:flex;gap:7px;align-items:center}.button,.tab{border:1px solid var(--line);background:white;color:var(--ink);border-radius:11px;padding:11px 13px;font-size:13px;font-weight:720;min-height:43px}.button.primary{background:var(--purple);color:white;border-color:var(--purple)}.button:focus-visible,.tab:focus-visible{outline:3px solid #b9aeff}.header{margin:13px 0 18px}.eyebrow{font-size:11px;color:var(--purple);font-weight:850;letter-spacing:1.6px;text-transform:uppercase}h1{font-size:clamp(25px,4vw,37px);letter-spacing:-.8px;line-height:1.15;margin:6px 0 7px}h2{font-size:17px;letter-spacing:-.25px;margin:0 0 14px}h3{font-size:14px;margin:0 0 6px}.muted{color:var(--muted)}.small{font-size:12px;line-height:1.55}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 7px 22px #24283d07;min-width:0}.kpi{padding:18px;position:relative}.kpi .number{font-size:33px;font-weight:850;line-height:1.1;letter-spacing:-.7px;margin:10px 0 5px}.kpi .label{font-size:13px;font-weight:780}.kpi .sub{font-size:11px;color:var(--muted)}.kpi.bad .number{color:var(--bad)}.kpi.warn .number{color:var(--warn)}.content{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(300px,1fr);gap:13px;margin-top:13px}.stack{display:grid;gap:13px;align-content:start}.list{display:grid;gap:10px}.item{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:0 0 10px}.item:last-child{border:0;padding-bottom:0}.item .title{font-size:13px;font-weight:780;line-height:1.4}.item .secondary{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45}.pill{display:inline-block;border-radius:99px;padding:5px 9px;font-size:10px;font-weight:800;white-space:nowrap;background:#edf0f6;color:#555e78;align-self:flex-start}.pill.danger{color:#a83548;background:#fff0f2}.pill.warning{color:#976000;background:#fff4df}.pill.success{color:#158061;background:#e8f7f0}.progress{height:10px;border-radius:20px;background:#e9ebf3;overflow:hidden;margin-top:10px}.progress>span{display:block;height:100%;border-radius:20px;background:var(--purple)}.bar-line{margin:12px 0}.bar-top{display:flex;gap:8px;justify-content:space-between;align-items:center;font-size:12px}.bar-label{max-width:75%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;font-weight:750}.tabs{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}.tab.active{background:#efeaff;border-color:#cdc4ff;color:#4b37a4}.controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:14px 0}.controls select{padding:10px;border:1px solid var(--line);border-radius:10px;background:white;max-width:250px;min-height:42px}.notice{padding:13px 15px;background:#f0edff;color:#5546a3;border:1px solid #dfd8ff;border-radius:12px;font-size:12px;line-height:1.6;margin:13px 0}.empty{color:var(--muted);font-size:13px;line-height:1.6}.footer{font-size:11px;color:var(--muted);margin-top:20px;line-height:1.65}.bottom{display:none}.report-only{display:none}.date{font-variant-numeric:tabular-nums}.ring{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;margin:7px auto 10px;background:conic-gradient(var(--purple) var(--pct),#e6e8f1 0)}.ring .inner{width:72px;height:72px;border-radius:50%;background:white;display:grid;place-items:center;font-size:24px;font-weight:850}.report-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.link{border:0;color:var(--purple);font-weight:750;background:transparent;padding:0;font-size:12px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.section-head h2{margin:0}.status{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}.status::before{content:"";width:8px;height:8px;border-radius:50%;background:#14a48e}.nowrap{white-space:nowrap}.security{max-width:520px;margin:12vh auto}.security h1{font-size:25px}.hidden{display:none!important}
+@media(max-width:760px){.shell{padding:15px 12px 94px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.kpi{padding:14px}.kpi .number{font-size:29px}.content{grid-template-columns:1fr}.panel{padding:15px}.top{margin-bottom:12px}.top-right .desktop{display:none}.bottom{display:grid;position:fixed;bottom:0;left:0;right:0;grid-template-columns:repeat(4,1fr);padding:7px 5px calc(7px + env(safe-area-inset-bottom));background:white;border-top:1px solid var(--line);box-shadow:0 -6px 18px #20204012;z-index:3}.bottom button{border:0;background:none;border-radius:9px;font-size:11px;font-weight:750;padding:8px 3px;color:#72758a}.bottom button.active{color:var(--purple);background:#f0edff}.bottom span{display:block;font-size:19px;margin-bottom:2px}}
+@media print{body{background:white}.shell{padding:0;max-width:100%}.top,.tabs,.bottom,.controls,.report-actions,.button,#status{display:none!important}.report-only{display:block}.panel{box-shadow:none;break-inside:avoid}.content{display:grid;grid-template-columns:1fr 1fr}.header{margin:0 0 13px}.grid{grid-template-columns:repeat(4,1fr)}}
+</style></head><body>
+<div id="security" class="security panel"><div class="eyebrow">Orbit • Secure workspace</div><h1 id="securityTitle">Connecting to Orbit…</h1><p id="securityText" class="muted">Checking your signed-in account.</p><a class="button primary" href="./" style="display:inline-block">Go to Orbit sign-in</a></div>
+<div id="app" class="shell hidden">
+ <div class="top"><div class="brand"><span class="mark">✦</span>orbit <span style="font-weight:600;font-size:12px;color:var(--muted)">MOBILE</span></div><div class="top-right"><button class="button desktop" id="refresh">↻ Refresh</button><a class="button" href="./">Full workspace</a></div></div>
+ <header class="header"><div class="eyebrow">Project command centre</div><h1 id="heading">Today's picture</h1><div class="status" id="status">Connected</div></header>
+ <div class="tabs" aria-label="Dashboard views">
+  <button class="tab active" data-view="overview">Overview</button><button class="tab" data-view="projects">Projects</button><button class="tab" data-view="decisions">Decisions</button><button class="tab" data-view="report">Report</button>
+ </div>
+ <div class="controls"><label for="customerFilter" class="small muted">Customer / project</label><select id="customerFilter"><option value="">All customers and internal work</option></select><label for="ownerFilter" class="small muted">Owner</label><select id="ownerFilter"><option value="">All owners</option></select></div>
+ <div id="dashboard"></div>
+ <p class="footer">Figures come from Orbit's shared activities and customer records. An overdue task or blocker is an operational warning, not an AI prediction. Projects are represented by customer-linked activities until Orbit has a separate project register.</p>
+ <nav class="bottom"><button data-view="overview" class="active"><span>◉</span>Today</button><button data-view="projects"><span>▤</span>Projects</button><button data-view="decisions"><span>⚑</span>Decisions</button><button data-view="report"><span>▧</span>Report</button></nav>
+</div>
+<script src="./orbit-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), h=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','"':'&quot;',"'":'&#39;'}[c]));
+const COLORS=['#7762D9','#E8954F','#26A99B','#DE6C95','#4E8DD7'];
+const today=()=>{let d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const dateLabel=v=>{if(!v)return 'Not set';const d=new Date(v+'T12:00:00');return isNaN(d)?String(v):d.toLocaleDateString('en-MY',{day:'numeric',month:'short'})};
+let client,user,workspace,roster=[],view='overview',customerId='',ownerId='',timer,updatedAt='';
+const done=a=>a.status==='Done'||a.stage==='Done';
+const cancelled=a=>a.status==='Cancelled'||a.stage==='Cancelled';
+const task=a=>['To-do','Deadline','Follow-up'].includes(a.type)||Boolean(a.stage);
+const open=a=>!done(a)&&!cancelled(a);
+const late=a=>task(a)&&open(a)&&a.date<today();
+const blocked=a=>task(a)&&open(a)&&(a.blocked||Boolean(a.dependsOn&&workspace.activities.some(x=>x.id===a.dependsOn&&!done(x))));
+const critical=a=>task(a)&&open(a)&&['Critical','High'].includes(a.priority);
+const customerName=id=>workspace.customers.find(c=>c.id===id)?.name||(id?'Other customer':'Internal');
+const ownerName=id=>roster.find(m=>'m'+m.member_slot===id)?.display_name||workspace.members?.find(m=>m.id===id)?.name||'Unassigned';
+const metrics=rows=>{const tasks=rows.filter(task&&!cancelled);const completed=tasks.filter(done).length;const active=tasks.filter(open);return {tasks:tasks.length,done:completed,open:active.length,late:active.filter(late).length,blocked:active.filter(blocked).length,critical:active.filter(critical).length,rate:tasks.length?Math.round(100*completed/tasks.length):null}};
+const tag=(txt,tone='')=>'<span class="pill '+tone+'">'+h(txt)+'</span>';
+const noData=text=>'<p class="empty">'+h(text)+'</p>';
+const card=(title,body)=>'<section class="panel"><h2>'+title+'</h2>'+body+'</section>';
+function rows(){return workspace.activities.filter(a=>(!customerId||a.customerId===customerId)&&(!ownerId||a.ownerId===ownerId||(!a.ownerId&&a.createdBy===ownerId)))}
+function taskItems(list){if(!list.length)return noData('No matching tasks.');return '<div class="list">'+list.map(a=>'<div class="item"><div><div class="title">'+h(a.title||'Untitled task')+'</div><div class="secondary">'+h(customerName(a.customerId))+' · '+h(ownerName(a.ownerId||a.createdBy))+' · '+h(dateLabel(a.date))+'</div></div>'+tag(blocked(a)?'Blocked':late(a)?'Overdue':a.priority||a.stage||'Open',blocked(a)||late(a)?'danger':critical(a)?'warning':'')+'</div>').join('')+'</div>'}
+function kpis(m){const items=[['Open work',m.open,'Active tasks',''],['Overdue',m.late,'Past due date',m.late?'bad':''],['Blocked',m.blocked,'Flagged / dependent',m.blocked?'warn':''],['Completion',m.rate===null?'—':m.rate+'%',m.tasks+' tasks recorded','']];return '<div class="grid">'+items.map(([label,v,sub,cl])=>'<section class="panel kpi '+cl+'"><div class="label">'+label+'</div><div class="number">'+v+'</div><div class="sub">'+h(sub)+'</div></section>').join('')+'</div>'}
+function progress(m){return '<div class="ring" style="--pct:'+(m.rate??0)+'%"><div class="inner">'+(m.rate===null?'—':m.rate+'%')+'</div></div><p class="small muted" style="text-align:center">'+m.done+' completed of '+m.tasks+' tasks</p>'}
+function overview(list,m){
+ const problems=list.filter(a=>blocked(a)||late(a)).sort((a,b)=>Number(blocked(b))-Number(blocked(a))||String(a.date).localeCompare(String(b.date))).slice(0,6);
+ const upcoming=list.filter(a=>open(a)&&a.date>=today()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,6);
+ return kpis(m)+'<div class="content"><div class="stack">'+card('Early warnings',problems.length?taskItems(problems):noData('No overdue or blocked work in the selected records.'))+card('Next commitments',upcoming.length?taskItems(upcoming):noData('No upcoming commitments in the selected records.'))+'</div><div class="stack">'+card('Delivery completion',progress(m))+card('Where to focus',m.blocked||m.late?'<p class="small">Start with '+(m.blocked?m.blocked+' blocked item(s)':'')+(m.blocked&&m.late?' and ':'')+(m.late?m.late+' overdue item(s)':'')+'. Assign an owner and next action in the full workspace.</p>':noData('No exceptions identified from task dates and blocked flags.'))+'</div></div>';
+}
+function projects(list){
+ const groups=new Map();
+ for(const c of workspace.customers){if(!customerId||customerId===c.id)groups.set(c.id,{name:c.name,items:[],id:c.id})}
+ if(!customerId)groups.set('',{name:'Internal work',items:[],id:''});
+ for(const a of list){let g=groups.get(a.customerId||'');if(g)g.items.push(a)}
+ let values=[...groups.values()].filter(g=>g.items.length||customerId);
+ if(!values.length)return card('Customer / project status',noData('No customer-linked work yet. Add a customer and its activities in Orbit to build this view.'));
+ return '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">'+values.map(g=>{const m=metrics(g.items);let due=g.items.filter(a=>task(a)&&open(a)).sort((a,b)=>a.date.localeCompare(b.date))[0];return '<section class="panel"><div class="section-head"><h2>'+h(g.name)+'</h2>'+tag(m.blocked?'Attention':m.late?'Late':m.open?'Active':'Clear',m.blocked||m.late?'danger':m.open?'warning':'success')+'</div><div class="small muted">'+m.done+' completed · '+m.open+' open · '+m.late+' overdue</div><div class="progress"><span style="width:'+(m.rate??0)+'%"></span></div><p class="small">Completion: <strong>'+(m.rate===null?'No task data':m.rate+'%')+'</strong></p><p class="small muted">Next due: '+(due?h(dateLabel(due.date)):'—')+'</p><button class="link" data-filter="'+h(g.id)+'">View these tasks →</button></section>'}).join('')+'</div>';
+}
+function decisions(list,m){
+ const actions=list.filter(a=>task(a)&&open(a)&&(blocked(a)||late(a)||critical(a))).sort((a,b)=>Number(blocked(b))-Number(blocked(a))||Number(late(b))-Number(late(a))||String(a.date).localeCompare(String(b.date)));
+ return '<div class="notice">Decision queue is based on recorded blockers, overdue dates and high-priority tasks. It does not calculate predicted ROI, profits or project risk scores without supporting data.</div>'+kpis(m)+'<div class="content"><div>'+card('Needs attention',taskItems(actions.slice(0,20)))+'</div><div>'+card('Review guidance','<p class="small">For each item: identify the owner, the next decision, what is preventing progress, and the next review date.</p><a class="button primary" style="display:inline-block" href="./">Open tasks in Orbit</a>')+'</div></div>';
+}
+function report(list,m){
+ let byOwner=workspace.members.map((p,i)=>{let id='m'+(i+1);return {id,name:ownerName(id),color:COLORS[i],m:metrics(list.filter(a=>(a.ownerId||a.createdBy)===id))}}).filter(x=>x.m.tasks);
+ let max=Math.max(...byOwner.map(x=>x.m.open),1);
+ const bars=byOwner.map(x=>'<div class="bar-line"><div class="bar-top"><span class="bar-label">'+h(x.name)+'</span><strong>'+x.m.open+' open · '+x.m.done+' done</strong></div><div class="progress"><span style="width:'+(100*x.m.open/max)+'%;background:'+x.color+'"></span></div></div>').join('')||noData('No assigned tasks to compare.');
+ return '<div class="report-only"><h1>Orbit project operations report</h1><p class="small">Generated '+h(new Date().toLocaleString('en-MY'))+' from the current authorised workspace</p></div>'+kpis(m)+'<div class="content"><div class="stack">'+card('Team workload',bars)+card('Exceptions to discuss',taskItems(list.filter(a=>late(a)||blocked(a)).slice(0,15)))+'</div><div class="stack">'+card('Delivery completion',progress(m))+card('Report notes','<p class="small">Derived from saved task records and due dates. Missing targets, financial figures, service-level measures and sentiment data are not estimated.</p><div class="report-actions"><button class="button primary" id="printReport">Print / Save PDF</button><button class="button" id="exportReport">Download CSV</button></div>')+'</div></div>';
+}
+function render(){
+ const list=rows(),m=metrics(list);$('heading').textContent=({overview:"Today's picture",projects:'Project health',decisions:'Decision queue',report:'Operations report'})[view];
+ document.querySelectorAll('[data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);b.setAttribute('aria-pressed',String(b.dataset.view===view))});
+ $('dashboard').innerHTML=({overview:()=>overview(list,m),projects:()=>projects(list),decisions:()=>decisions(list,m),report:()=>report(list,m)})[view]();
+ $('status').textContent='Supabase connected · Updated '+(updatedAt?new Date(updatedAt).toLocaleTimeString('en-MY',{hour:'2-digit',minute:'2-digit'}):'just now');
+}
+async function reload(){
+ const {data:u,error:ue}=await client.auth.getUser();if(ue||!u?.user)throw Error('Session expired. Please sign in again.');user=u.user;
+ const email=String(user.email||'').toLowerCase();
+ const {data:membership,error:me}=await client.from('orbit_allowed_emails').select('is_active,member_slot').eq('email',email).maybeSingle();
+ if(me||!membership?.is_active)throw Error('Your email is not authorised for this workspace.');
+ const results=await Promise.all([client.from('orbit_workspace').select('payload,revision,updated_at').eq('id','main').single(),client.rpc('orbit_team_roster')]);
+ if(results[0].error)throw Error('Workspace read failed: '+results[0].error.message);
+ if(results[1].error)throw Error('Team lookup failed: '+results[1].error.message);
+ workspace=results[0].data.payload;roster=results[1].data||[];
+ if(!workspace||!Array.isArray(workspace.activities)||!Array.isArray(workspace.customers)||!Array.isArray(workspace.members))throw Error('Workspace data is not ready.');
+ updatedAt=results[0].data.updated_at;
+ const oldCustomer=customerId,oldOwner=ownerId;
+ $('customerFilter').innerHTML='<option value="">All customers and internal work</option>'+workspace.customers.map(c=>'<option value="'+h(c.id)+'">'+h(c.name)+'</option>').join('');
+ $('ownerFilter').innerHTML='<option value="">All owners</option>'+workspace.members.map((m,i)=>'<option value="m'+(i+1)+'">'+h(ownerName('m'+(i+1)))+'</option>').join('');
+ customerId=workspace.customers.some(c=>c.id===oldCustomer)?oldCustomer:'';
+ ownerId=workspace.members.some(m=>m.id===oldOwner)?oldOwner:'';
+ $('customerFilter').value=customerId;$('ownerFilter').value=ownerId;render();
+}
+function csv(){
+ const out=[['Task','Customer','Owner','Due date','Stage','Priority','Blocked','Completed']];
+ for(const a of rows().filter(task)){out.push([a.title||'',customerName(a.customerId),ownerName(a.ownerId||a.createdBy),a.date||'',a.stage||a.status||'',a.priority||'',blocked(a)?'Yes':'No',done(a)?'Yes':'No'])}
+ const esc=x=>'"'+String(x??'').replace(/"/g,'""')+'"';
+ const blob=new Blob([out.map(r=>r.map(esc).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='orbit_operations_'+today()+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
+}
+async function boot(){
+ const cfg=window.ORBIT_CONFIG||{};if(!window.supabase||!cfg.url||!cfg.publishableKey)throw Error('Orbit configuration is missing.');
+ client=window.supabase.createClient(cfg.url,cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+ await reload();$('security').classList.add('hidden');$('app').classList.remove('hidden');
+ timer=setInterval(()=>reload().catch(e=>{$('status').textContent='Sync interrupted: '+e.message}),30000);
+}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;render();window.scrollTo({top:0,behavior:'smooth'})}));
+$('customerFilter').addEventListener('change',e=>{customerId=e.target.value;render()});
+$('ownerFilter').addEventListener('change',e=>{ownerId=e.target.value;render()});
+$('refresh').addEventListener('click',()=>reload().catch(e=>alert(e.message)));
+$('dashboard').addEventListener('click',e=>{
+ if(e.target.closest('[data-filter]')){customerId=e.target.closest('[data-filter]').dataset.filter;$('customerFilter').value=customerId;view='overview';render();window.scrollTo({top:0,behavior:'smooth'})}
+ if(e.target.id==='printReport')window.print();
+ if(e.target.id==='exportReport')csv();
+});
+boot().catch(e=>{$('securityTitle').textContent='Sign-in required';$('securityText').textContent=e.message});
+})();
+</script></body></html>
