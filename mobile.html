@@ -27,14 +27,14 @@ const dateLabel=v=>{if(!v)return 'Not set';const d=new Date(v+'T12:00:00');retur
 let client,user,workspace,roster=[],view='overview',customerId='',ownerId='',timer,updatedAt='';
 const done=a=>a.status==='Done'||a.stage==='Done';
 const cancelled=a=>a.status==='Cancelled'||a.stage==='Cancelled';
-const task=a=>['To-do','Deadline','Follow-up'].includes(a.type)||Boolean(a.stage);
+const task=a=>['To-do','Deadline','Follow-up'].includes(a.type);
 const open=a=>!done(a)&&!cancelled(a);
 const late=a=>task(a)&&open(a)&&a.date<today();
 const blocked=a=>task(a)&&open(a)&&(a.blocked||Boolean(a.dependsOn&&workspace.activities.some(x=>x.id===a.dependsOn&&!done(x))));
 const critical=a=>task(a)&&open(a)&&['Critical','High'].includes(a.priority);
 const customerName=id=>workspace.customers.find(c=>c.id===id)?.name||(id?'Other customer':'Internal');
 const ownerName=id=>roster.find(m=>'m'+m.member_slot===id)?.display_name||workspace.members?.find(m=>m.id===id)?.name||'Unassigned';
-const metrics=rows=>{const tasks=rows.filter(task&&!cancelled);const completed=tasks.filter(done).length;const active=tasks.filter(open);return {tasks:tasks.length,done:completed,open:active.length,late:active.filter(late).length,blocked:active.filter(blocked).length,critical:active.filter(critical).length,rate:tasks.length?Math.round(100*completed/tasks.length):null}};
+const metrics=rows=>{const tasks=rows.filter(a=>task(a)&&!cancelled(a));const completed=tasks.filter(done).length;const active=tasks.filter(open);return {tasks:tasks.length,done:completed,open:active.length,late:active.filter(late).length,blocked:active.filter(blocked).length,critical:active.filter(critical).length,rate:tasks.length?Math.round(100*completed/tasks.length):null}};
 const tag=(txt,tone='')=>'<span class="pill '+tone+'">'+h(txt)+'</span>';
 const noData=text=>'<p class="empty">'+h(text)+'</p>';
 const card=(title,body)=>'<section class="panel"><h2>'+title+'</h2>'+body+'</section>';
