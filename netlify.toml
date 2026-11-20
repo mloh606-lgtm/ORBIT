@@ -1,0 +1,4 @@
+# Orbit Team Organiser V3 — static site
+# Netlify should publish the root HTML directly; no build command is required.
+[build]
+  publish = "."
