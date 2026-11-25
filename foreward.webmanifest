@@ -1,0 +1,18 @@
+{
+  "id": "/foreward.html",
+  "name": "FOREWARD Executive Command",
+  "short_name": "FOREWARD",
+  "start_url": "/foreward.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0d11",
+  "theme_color": "#0a0d11",
+  "icons": [
+    {
+      "src": "/foreward-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
