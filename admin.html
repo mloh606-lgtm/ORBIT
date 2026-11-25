@@ -29,7 +29,7 @@ button.danger{color:#ad3651;border-color:#efc2ca}button:disabled{opacity:.48;cur
 </head><body>
 <div class="shell">
  <header class="top"><div class="brand"><b>✦</b> orbit <span class="muted small">/ ADMINISTRATION</span></div><a class="btn" href="./">← Back to workspace</a></header>
- <section><h1>Team administration</h1><p class="muted">Invite team members, assign their colour, and control who may enter the shared Orbit workspace. Passwords remain with Supabase.</p></section>
+ <section><h1>Team administration</h1><p class="muted">Invite team members, assign their colour, control access, and help colleagues recover their sign-in. Existing passwords cannot be viewed or recovered; members set new ones using a secure email link.</p></section>
  <div id="message" aria-live="polite">Checking administrator access…</div>
  <div id="access" class="panel hide"><h2>Administrator access required</h2><p id="accessReason">Sign in to Orbit with an administrator account first.</p><a class="btn" href="./">Go to Orbit sign-in</a></div>
  <div id="adminArea" class="hide">
@@ -51,6 +51,7 @@ button.danger{color:#ad3651;border-color:#efc2ca}button:disabled{opacity:.48;cur
    <div class="top" style="margin-bottom:7px"><h2 style="margin:0">Authorised team</h2><button type="button" id="refresh">Refresh</button></div>
    <div class="tablewrap"><table><thead><tr><th>Colour / Slot</th><th>Name / Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody id="membersRows"></tbody></table></div>
   </section>
+  <section class="panel"><h2>Password recovery</h2><p class="muted small">Use <strong>Send recovery email</strong> beside an active member. Only the recipient can open their secure link and choose a new password. The administrator cannot read the old or new password. If recovery links return to the wrong page, add <code>https://unrivaled-concha-0ac9ab.netlify.app/reset-password.html</code> to Supabase Auth → URL Configuration → Redirect URLs.</p></section>
   <section class="panel"><h2>About sign-in and access</h2>
    <p class="muted small">Every colleague uses their own Supabase account; Orbit never sees or stores passwords. Admins may authorise, deactivate or remove email addresses. Removed or deactivated accounts immediately lose database access, although any data previously downloaded to their own device cannot be remotely erased. All active users share the same customer records and tasks; administrator rights apply to user management only.</p>
   </section>
@@ -84,6 +85,7 @@ button.danger{color:#ad3651;border-color:#efc2ca}button:disabled{opacity:.48;cur
       '</td><td><strong>'+escapeText(m.display_name)+'</strong><div class="muted small">'+escapeText(m.email)+'</div></td>'+
       '<td>'+escapeText(m.role)+'</td><td><span class="pill '+(m.is_active?'on':'')+'">'+(m.is_active?'Active':'Disabled')+'</span></td>'+
       '<td><div class="actions" style="margin:0"><button data-do="edit" data-email="'+escapeText(m.email)+'">Edit</button>'+
+      '<button data-do="recover" data-email="'+escapeText(m.email)+'" '+(!m.is_active?'disabled title="Reactivate the member before requesting recovery"':'')+'>Send recovery email</button>'+
       '<button data-do="invite" data-email="'+escapeText(m.email)+'">Copy invitation</button>'+
       '<button data-do="email" data-email="'+escapeText(m.email)+'">Email invitation</button>'+
       (!self?'<button data-do="toggle" data-email="'+escapeText(m.email)+'">'+(m.is_active?'Deactivate':'Reactivate')+'</button><button class="danger" data-do="remove" data-email="'+escapeText(m.email)+'">Remove</button>':'')+
@@ -128,6 +130,18 @@ button.danger{color:#ad3651;border-color:#efc2ca}button:disabled{opacity:.48;cur
    $('memberEmail').value=m.email;$('memberEmail').readOnly=true;$('memberName').value=m.display_name;
    $('memberRole').value=m.role;$('saveMember').textContent='Save changes';$('cancelEdit').classList.remove('hide');
    render();$('memberSlot').value=String(m.member_slot);$('memberName').focus();return;
+  }
+  if(action==='recover'){
+    if(!m.is_active)return message('Reactivate this member before sending a recovery email.',true);
+    if(!window.confirm('Send a secure password recovery email to '+m.email+'? The member, not the administrator, will set the new password.'))return;
+    btn.disabled=true;
+    try{
+      const result=await client.auth.resetPasswordForEmail(m.email,{redirectTo:SITE+'reset-password.html'});
+      if(result.error)throw Error(result.error.message);
+      message('Recovery requested for '+m.email+'. Ask the member to check their inbox. The email service may limit how often links can be requested.');
+    }catch(err){message('Could not request recovery: '+err.message,true)}
+    finally{btn.disabled=false}
+    return;
   }
   if(action==='invite'){
     try{await navigator.clipboard.writeText(invitation(m));message('Invitation copied. Paste it into an email or message.')}
